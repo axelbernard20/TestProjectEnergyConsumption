@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/axelbernard20/test-project-energy-consumption.git'
+                git 'https://github.com/axelbernard20/TestProjectEnergyConsumption.git'
             }
         }
         stage('Environment Setup') {
