@@ -7,14 +7,32 @@ pipeline {
                 git 'https://github.com/axelbernard20/test-project-energy-consumption.git'
             }
         }
+        stage('Environment Setup') {
+            steps {
+                script {
+                    // Set up the environment
+                }
+            }
+        }
         stage('Build') {
             steps {
                 sh 'mvn clean install'
+                // 'mvn clean compile'
             }
         }
-        stage('Test') {
+        stage('Static Analysis') {
+            steps {
+                sh 'mvn checkstyle:check'
+            }
+        }
+        stage('Unit Tests') {
             steps {
                 sh 'mvn test'
+            }
+        }
+        stage('Integration Tests') {
+            steps {
+                sh 'mvn verify'
             }
         }
         stage('Package') {
