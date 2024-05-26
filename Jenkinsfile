@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git url: 'https://github.com/axelbernard20/TestProjectEnergyConsumption.git', branch: 'plugin_vide'
+                git url: 'https://github.com/axelbernard20/TestProjectEnergyConsumption.git', branch: 'plugin_plein'
             }
         }
 
@@ -39,6 +39,14 @@ pipeline {
             }
         }
 
+        stage('Run') {
+            steps {
+                script {
+                    // Run the main class
+                    sh 'mvn exec:java -Dexec.mainClass="test_plugin.InefficientSort.java"'
+                }
+            }
+        }
         
         stage('Deploy') {
             steps {
